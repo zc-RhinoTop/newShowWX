@@ -1,0 +1,55 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index"
+		}
+	    ,{
+            "path" : "pages/cart/cart",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/member/member",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/news/news",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "新零售平台",
+		"navigationBarBackgroundColor": "#FB8629",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"selectedColor":"#FB8629",
+		"color":"#ccc",
+		"list":[
+			{
+				"text":"首页",
+				"pagePath":"pages/index/index",
+				"iconPath":"static/tabbar/index.png",
+				"selectedIconPath":"static/tabbar/index_active.png"
+			},
+			{
+				"text":"分类",
+				"pagePath":"pages/news/news",
+				"iconPath":"static/tabbar/form.png",
+				"selectedIconPath":"static/tabbar/form_active.png"
+			},
+			{
+				"text":"购物车",
+				"pagePath":"pages/cart/cart",
+				"iconPath":"static/tabbar/todo.png",
+				"selectedIconPath":"static/tabbar/todo_active.png"
+			},
+			{
+				"text":"我的",
+				"pagePath":"pages/member/member",
+				"iconPath":"static/tabbar/prifile.png",
+				"selectedIconPath":"static/tabbar/prifile_active.png"
+			}
+		]
+	}
+}
