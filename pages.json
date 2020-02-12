@@ -5,15 +5,30 @@
 		}
 	    ,{
             "path" : "pages/cart/cart",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"我的购物车",
+				"navigationBarBackgroundColor": "#FB8629",
+				"backgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "white"
+			}
         }
         ,{
             "path" : "pages/member/member",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"个人中心",
+				"navigationBarBackgroundColor": "#FB8629",
+				"backgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "white"
+			}
         }
         ,{
             "path" : "pages/news/news",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText":"商品分类",
+				"navigationBarBackgroundColor": "#FB8629",
+				"backgroundColor": "#F8F8F8",
+				"navigationBarTextStyle": "white"
+			}
         }
     ],
 	"globalStyle": {
