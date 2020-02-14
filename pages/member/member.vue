@@ -5,7 +5,7 @@
 				<image src="../../static/image/m1.png"></image>
 			</view>
 			<view class="loginBtn">
-				<button type="default" plain="true" size="mini">登录/注册</button>
+				<button type="default" plain="true" size="mini" @tap="login">登录/注册</button>
 			</view>
 		</view>
 		<view class="perch">
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import { getWxDecode,getWxLogin } from "../../util/user.js"
 	export default {
 		data() {
 			return {
@@ -66,10 +67,26 @@
 							solImg:'../../static/image/m9.png',
 							solText:'关于我们'
 						}
-					]
+					],
+					
+				encryptedData:'',
+				iv:'',
+				code:'1'
 			}		
 		
 		},
+		methods:{
+			login() {
+				getWxDecode(this.encryptedData,this.iv,this.code).then(res => {
+						console.log(res)
+				})
+				// getWxLogin(this.unionId,this.loginType).then(res => {
+				// 	if(res.data.code == 100){
+				// 		console.log(res)
+				// 	}
+				// })
+			}
+		}
 }
 </script>
 

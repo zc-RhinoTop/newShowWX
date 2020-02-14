@@ -10,7 +10,7 @@ export function getWxDecode(encryptedData,iv,code){
 			code
 		}
 	})
-}
+};
 export function getWxLogin(unionId,loginType){
 	return request({
 		url: '/wxLogin/login',

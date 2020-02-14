@@ -154,15 +154,7 @@
 						title: '获取数据失败'
 					})
 				}
-			});
-			// getWxDecode(this.encryptedData,this.iv,this.code).then(res => {
-			// 		console.log(res)
-			// }),
-			// getWxLogin(this.unionId,this.loginType).then(res => {
-			// 	if(res.data.code == 100){
-			// 		console.log(res)
-			// 	}
-			// })
+			})
 		},
 		methods: {
 		
