@@ -1663,23 +1663,19 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var BESTURL = 'http://121.36.172.234:8085';
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var BESTURL = 'http://121.36.172.234:8085';
 function _default(config) {
   return new Promise(function (resolve, reject) {
-    uni.request({
+    wx.request({
       url: BESTURL + config.url,
       method: config.method || 'post',
-      header: config.header || {
-        "content-type": "application/x-www-form-urlencoded"
-        // "cookie": "JSESSIONID=" + wx.getStorageSync('sessionId')
-      },
       data: config.data || {},
+      header: config.header || {},
       success: resolve,
       fail: reject });
 
   });
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -7763,6 +7759,42 @@ module.exports = g;
 
 /***/ }),
 
+/***/ 39:
+/*!***********************************!*\
+  !*** D:/三阶段/hm_show/util/user.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.getWxLogin = getWxLogin;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function getWxDecode(encryptedData, iv, code) {
+  return (0, _request.default)({
+    url: '/wxLogin/decodeUserInfo',
+    method: 'get',
+    data: {
+      encryptedData: encryptedData,
+      iv: iv,
+      code: code } });
+
+
+};
+function getWxLogin(unionId) {var loginType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'wxLogin';
+  return (0, _request.default)({
+    url: '/wxLogin/login',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      unionId: unionId,
+      loginType: loginType } });
+
+
+}
+
+/***/ }),
+
 /***/ 4:
 /*!*********************************!*\
   !*** D:/三阶段/hm_show/pages.json ***!
@@ -7775,30 +7807,49 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 47:
-/*!***********************************!*\
-  !*** D:/三阶段/hm_show/util/news.js ***!
-  \***********************************/
+/***/ 48:
+/*!***************************************!*\
+  !*** D:/三阶段/hm_show/util/category.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getNewsList = getNewsList;exports.getSecondList = getSecondList;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-function getNewsList() {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getCategoryData = getCategoryData;exports.getSecondCategoryData = getSecondCategoryData;exports.getCategoryBrandData = getCategoryBrandData;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+function getCategoryData() {
   return (0, _request.default)({
     url: '/index/loadFirstCategory' });
 
 }
-
-function getSecondList(parentId) {
+function getSecondCategoryData(parentId) {
   return (0, _request.default)({
     url: '/index/loadSecondCategory',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
     data: {
       parentId: parentId } });
 
 
 }
+function getCategoryBrandData(categoryId) {var orderName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'hot';var orderPalin = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'DESC';var queryName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';var bandId = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '1';
+  return (0, _request.default)({
+    url: '/commodity/commodityListByFirstLelCategory',
+    header: {
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      categoryId: categoryId,
+      pageNum: 1,
+      pageRow: 100,
+      orderName: orderName,
+      orderPalin: orderPalin,
+      queryName: queryName,
+      bandId: bandId } });
+
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8700,39 +8751,6 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 
 /***/ }),
 
-/***/ 63:
-/*!***********************************!*\
-  !*** D:/三阶段/hm_show/util/user.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.getWxLogin = getWxLogin;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-function getWxDecode(encryptedData, iv, code) {
-  return (0, _request.default)({
-    url: '/wxLogin/decodeUserInfo',
-    method: 'get',
-    data: {
-      encryptedData: encryptedData,
-      iv: iv,
-      code: code } });
-
-
-};
-function getWxLogin(unionId, loginType) {
-  return (0, _request.default)({
-    url: '/wxLogin/login',
-    data: {
-      unionId: unionId,
-      loginType: loginType } });
-
-
-}
-
-/***/ }),
-
 /***/ 7:
 /*!**************************************************!*\
   !*** D:/三阶段/hm_show/pages.json?{"type":"style"} ***!
@@ -8741,7 +8759,7 @@ function getWxLogin(unionId, loginType) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/news/news": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "usingComponents": { "m-search": "/compoments/mehaotian-search-revision/mehaotian-search-revision", "goods": "/compoments/goods/goods" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
@@ -8754,6 +8772,90 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__047D611" };exports.default = _default;
+
+/***/ }),
+
+/***/ 80:
+/*!**************************************!*\
+  !*** D:/三阶段/hm_show/util/details.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getDetailsData = getDetailsData;exports.getCommodityDetailsData = getCommodityDetailsData;exports.joinCar = joinCar;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+function getDetailsData(bargainId) {
+  return (0, _request.default)({
+    url: '/bargain/loadBargainInfo',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      bargainId: bargainId } });
+
+
+}
+function getCommodityDetailsData(commodityInstId) {
+  return (0, _request.default)({
+    url: '/commodity/commodityInfo',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      commodityInstId: commodityInstId } });
+
+
+}
+function joinCar(commodityInstId, type) {
+  return (0, _request.default)({
+    url: '/shopCart/add',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      commodityInstId: commodityInstId,
+      type: type } });
+
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 82:
+/*!*************************************!*\
+  !*** D:/三阶段/hm_show/util/search.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getHotKey = getHotKey;exports.getKeyWordGoods = getKeyWordGoods;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+function getHotKey(pageNum, pageRow) {
+  return (0, _request.default)({
+    url: '/index/hotKeyword',
+    data: {
+      pageNum: pageNum,
+      pageRow: pageRow } });
+
+
+}
+function getKeyWordGoods(queryName) {var pageNum = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;var pageRow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;var orderName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'hot';var orderPalin = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'ASC';
+  return (0, _request.default)({
+    url: '/commodity/search',
+    data: {
+      queryName: queryName,
+      pageNum: pageNum,
+      pageRow: pageRow,
+      orderName: orderName,
+      orderPalin: orderPalin } });
+
+
+
+}
 
 /***/ })
 

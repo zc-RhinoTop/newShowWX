@@ -226,10 +226,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
 var _index = __webpack_require__(/*! ../../util/index.js */ 22); //
 //
 //
@@ -312,11 +308,7 @@ var _index = __webpack_require__(/*! ../../util/index.js */ 22); //
 //
 //
 //
-//
-//
-//
-//
-var _default = { data: function data() {return { advertList: [], csList: [{ csImg: '../../static/image/t2.png', csText: '水果' }, { csImg: '../../static/image/t2.png', csText: '蔬菜' }, { csImg: '../../static/image/t2.png', csText: '烧烤季' }, { csImg: '../../static/image/t2.png', csText: '蔬菜豆品' }, { csImg: '../../static/image/t2.png', csText: '海鲜水产' }, { csImg: '../../static/image/t2.png', csText: '粮油调品' }, { csImg: '../../static/image/t2.png', csText: '肉禽蛋品' }, { csImg: '../../static/image/t2.png', csText: '牛奶面包' }, { csImg: '../../static/image/t2.png', csText: '酒水饮料' }, { csImg: '../../static/image/t2.png', csText: '休闲零食' }], csList2: [{ csImg: '../../static/image/t2.png', csText: '熟食冻品' }, { csImg: '../../static/image/t2.png', csText: '日用品' }] };}, onLoad: function onLoad(options) {var _this = this;(0, _index.getIndexList)().then(function (res) {if (res.data.code == 100) {console.log(res);_this.advertList = res.data.info.advertList;} else {return uni.showToast({ title: '获取数据失败' });}});}, methods: {} };exports.default = _default;
+var _default = { data: function data() {return { advertList: [], category: [], goods: [], stores: '' };}, onLoad: function onLoad(options) {var _this = this;(0, _index.getIndexList)().then(function (res) {if (res.data.code == 100) {console.log(res);_this.advertList = res.data.info.advertList;_this.category = res.data.info.categoryList;_this.goods = res.data.info.bargainCommodityList;} else {return uni.showToast({ title: '获取数据失败' });}});}, methods: { toSerach: function toSerach() {uni.navigateTo({ url: '/pages/search/search' });}, goCategory: function goCategory(index, id) {uni.switchTab({ url: '/pages/category/category' });uni.$emit('onceKinds', { index: index, id: id });} }, computed: { newDemo: function newDemo() {if (this.category.length > 10) {var arr = [];for (var i = 0; i < this.category.length; i += 10) {arr.push(this.category.slice(i, i + 10));}return arr;} else {return this.category;}} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

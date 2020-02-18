@@ -11,9 +11,12 @@ export function getWxDecode(encryptedData,iv,code){
 		}
 	})
 };
-export function getWxLogin(unionId,loginType){
+export function getWxLogin(unionId,loginType='wxLogin'){
 	return request({
 		url: '/wxLogin/login',
+		header:{
+			'content-type':'application/x-www-form-urlencoded'
+		},
 		data:{
 			unionId,
 			loginType

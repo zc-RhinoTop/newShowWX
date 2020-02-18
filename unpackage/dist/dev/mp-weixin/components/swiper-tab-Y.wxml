@@ -1,1 +1,0 @@
-<view class="uni-tab-bar"><scroll-view scroll-y="true"><block wx:for="{{firstCategory}}" wx:for-item="item" wx:for-index="index" wx:key="categoryId"><block><view data-event-opts="{{[['tap',[['tabtap',[index]]]]]}}" class="{{['item',(isActive==index)?'active_item':'']}}" bindtap="__e">{{''+item.categoryName+''}}</view></block></block></scroll-view></view>

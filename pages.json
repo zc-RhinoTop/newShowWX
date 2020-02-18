@@ -1,7 +1,10 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index"
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "新零售平台"
+			}
 		}
 	    ,{
             "path" : "pages/cart/cart",
@@ -22,14 +25,20 @@
 			}
         }
         ,{
-            "path" : "pages/news/news",
+            "path" : "pages/category/category",
             "style" : {
 				"navigationBarTitleText":"商品分类",
 				"navigationBarBackgroundColor": "#FB8629",
 				"backgroundColor": "#F8F8F8",
 				"navigationBarTextStyle": "white"
 			}
-        }
+        },
+		{
+		    "path" : "pages/search/search",
+		    "style" : {
+				"navigationBarTitleText": "搜索"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -45,25 +54,25 @@
 				"text":"首页",
 				"pagePath":"pages/index/index",
 				"iconPath":"static/tabbar/index.png",
-				"selectedIconPath":"static/tabbar/index_active.png"
+				"selectedIconPath":"static/tabbar/index-active.png"
 			},
 			{
 				"text":"分类",
-				"pagePath":"pages/news/news",
-				"iconPath":"static/tabbar/form.png",
-				"selectedIconPath":"static/tabbar/form_active.png"
+				"pagePath":"pages/category/category",
+				"iconPath":"static/tabbar/category.png",
+				"selectedIconPath":"static/tabbar/category-active.png"
 			},
 			{
 				"text":"购物车",
 				"pagePath":"pages/cart/cart",
-				"iconPath":"static/tabbar/todo.png",
-				"selectedIconPath":"static/tabbar/todo_active.png"
+				"iconPath":"static/tabbar/car.png",
+				"selectedIconPath":"static/tabbar/car-active.png"
 			},
 			{
 				"text":"我的",
 				"pagePath":"pages/member/member",
-				"iconPath":"static/tabbar/prifile.png",
-				"selectedIconPath":"static/tabbar/prifile_active.png"
+				"iconPath":"static/tabbar/my.png",
+				"selectedIconPath":"static/tabbar/my-active.png"
 			}
 		]
 	}

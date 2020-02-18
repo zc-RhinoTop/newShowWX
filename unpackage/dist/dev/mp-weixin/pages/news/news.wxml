@@ -1,1 +1,0 @@
-<view class="news"><swiper-tab-y vue-id="1" firstCategory="{{firstCategory}}" isActive="{{isActive}}" data-event-opts="{{[['^tabtap',[['tabtap']]]]}}" bind:tabtap="__e" bind:__l="__l"></swiper-tab-y><view class="right">1</view></view>
