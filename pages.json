@@ -38,7 +38,36 @@
 		    "style" : {
 				"navigationBarTitleText": "搜索"
 			}
+		},
+		{
+		    "path" : "pages/member/login",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/deliveryAddress/deliveryAddress",
+		    "style" : {
+				"navigationBarTitleText": "我的收货地址"
+			}
+		},
+		{
+		    "path" : "pages/allOrders/allOrders",
+		    "style" : {
+				"navigationBarTitleText": "我的全部订单"
+			}
+		},
+		{
+		    "path" : "pages/applicationForDrawback/applicationForDrawback",
+		    "style" : {
+				"navigationBarTitleText": "我的退款申请"
+			}
+		},
+		{
+		    "path" : "pages/aboutUs/aboutUs",
+		    "style" : {
+				"navigationBarTitleText": "关于我们"
+			}
 		}
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

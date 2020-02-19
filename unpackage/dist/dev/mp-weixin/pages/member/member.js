@@ -133,7 +133,18 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -192,35 +203,68 @@ var _user = __webpack_require__(/*! ../../util/user.js */ 39); //
 //
 //
 //
-var _default = { data: function data() {return { mbList: [{ mbImg: '../../static/image/m2.png', mbText: '待付款' }, { mbImg: '../../static/image/m3.png', mbText: '待发货' }, { mbImg: '../../static/image/m4.png', mbText: '已发货' }, { mbImg: '../../static/image/m5.png', mbText: '已收货' }], mbSol: [{ solImg: '../../static/image/m6.png', solText: '收货地址' }, { solImg: '../../static/image/m7.png', solText: '全部订单' },
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { user: {}, unionid: '', isLogin: uni.getStorageSync('login'), mbList: [{ mbImg: '../../static/image/m2.png', mbText: '待付款' }, { mbImg: '../../static/image/m3.png', mbText: '待发货' }, { mbImg: '../../static/image/m4.png', mbText: '已发货' }, { mbImg: '../../static/image/m5.png', mbText: '已收货' }], mbSol: [{ solImg: '../../static/image/m6.png', solText: '收货地址' }, { solImg: '../../static/image/m7.png', solText: '全部订单' }, { solImg: '../../static/image/m8.png', solText: '退款申请' }, { solImg: '../../static/image/m9.png',
+        solText: '关于我们' }] };
 
-      {
-        solImg: '../../static/image/m8.png',
-        solText: '退款申请' },
 
-      {
-        solImg: '../../static/image/m9.png',
-        solText: '关于我们' }],
-
-
-
-      encryptedData: '',
-      iv: '',
-      code: '1' };
 
 
   },
+  onLoad: function onLoad() {
+    if (this.isLogin) {
+      this.user = this.$store.getters.getUserInfo;
+    }
+    this.unionid = uni.getStorageSync('unionid');
+  },
   methods: {
-    login: function login() {
-      (0, _user.getWxDecode)(this.encryptedData, this.iv, this.code).then(function (res) {
-        console.log(res);
-      });
-      // getWxLogin(this.unionId,this.loginType).then(res => {
-      // 	if(res.data.code == 100){
-      // 		console.log(res)
-      // 	}
-      // })
+    sign: function sign() {
+      if (this.unionid) {
+        this.user = this.$store.getters.getUserInfo();
+      } else {
+        uni.navigateTo({
+          url: '/pages/member/login' });
+
+      }
+    },
+    indexLink: function indexLink(index) {
+      console.log(index);
+      if (index == 0) {
+        uni.navigateTo({
+          url: '/pages/deliveryAddress/deliveryAddress' });
+
+      } else if (index == 1) {
+        uni.navigateTo({
+          url: '/pages/allOrders/allOrders' });
+
+      } else if (index == 2) {
+        uni.navigateTo({
+          url: '/pages/applicationForDrawback/applicationForDrawback' });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/aboutUs/aboutUs' });
+
+      }
+    },
+    signOut: function signOut() {
+      uni.removeStorageSync('login');
+      this.isLogin = false;
+      uni.showToast({
+        title: '退出成功' });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

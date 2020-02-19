@@ -737,7 +737,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7211,7 +7211,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7232,14 +7232,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7315,7 +7315,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7767,7 +7767,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.getWxLogin = getWxLogin;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.getWxLogin = getWxLogin;exports.send = send;exports.register = register;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function getWxDecode(encryptedData, iv, code) {
   return (0, _request.default)({
@@ -7789,6 +7789,29 @@ function getWxLogin(unionId) {var loginType = arguments.length > 1 && arguments[
     data: {
       unionId: unionId,
       loginType: loginType } });
+
+
+}
+function send(telephone) {
+  return (0, _request.default)({
+    url: '/aliMsg/send',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      telephone: telephone } });
+
+
+}
+function register(telephone, unionId) {
+  return (0, _request.default)({
+    url: '/wxLogin/register',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      telephone: telephone,
+      unionId: unionId } });
 
 
 }
@@ -8740,6 +8763,40 @@ main();
 
 /***/ }),
 
+/***/ 57:
+/*!*************************************!*\
+  !*** D:/三阶段/hm_show/util/search.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getHotKey = getHotKey;exports.getKeyWordGoods = getKeyWordGoods;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+function getHotKey(pageNum, pageRow) {
+  return (0, _request.default)({
+    url: '/index/hotKeyword',
+    data: {
+      pageNum: pageNum,
+      pageRow: pageRow } });
+
+
+}
+function getKeyWordGoods(queryName) {var pageNum = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;var pageRow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;var orderName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'hot';var orderPalin = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'ASC';
+  return (0, _request.default)({
+    url: '/commodity/search',
+    data: {
+      queryName: queryName,
+      pageNum: pageNum,
+      pageRow: pageRow,
+      orderName: orderName,
+      orderPalin: orderPalin } });
+
+
+
+}
+
+/***/ }),
+
 /***/ 6:
 /*!******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/package.json ***!
@@ -8759,23 +8816,11 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "usingComponents": { "m-search": "/compoments/mehaotian-search-revision/mehaotian-search-revision", "goods": "/compoments/goods/goods" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "usingComponents": { "m-search": "/compoments/mehaotian-search-revision/mehaotian-search-revision", "goods": "/compoments/goods/goods" }, "usingAutoImportComponents": {} }, "pages/deliveryAddress/deliveryAddress": { "navigationBarTitleText": "我的收货地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/allOrders/allOrders": { "navigationBarTitleText": "我的全部订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/applicationForDrawback/applicationForDrawback": { "navigationBarTitleText": "我的退款申请", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/aboutUs/aboutUs": { "navigationBarTitleText": "关于我们", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/login": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
-/***/ 8:
-/*!*************************************************!*\
-  !*** D:/三阶段/hm_show/pages.json?{"type":"stat"} ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__047D611" };exports.default = _default;
-
-/***/ }),
-
-/***/ 80:
+/***/ 72:
 /*!**************************************!*\
   !*** D:/三阶段/hm_show/util/details.js ***!
   \**************************************/
@@ -8825,37 +8870,15 @@ function joinCar(commodityInstId, type) {
 
 /***/ }),
 
-/***/ 82:
-/*!*************************************!*\
-  !*** D:/三阶段/hm_show/util/search.js ***!
-  \*************************************/
+/***/ 8:
+/*!*************************************************!*\
+  !*** D:/三阶段/hm_show/pages.json?{"type":"stat"} ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getHotKey = getHotKey;exports.getKeyWordGoods = getKeyWordGoods;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-function getHotKey(pageNum, pageRow) {
-  return (0, _request.default)({
-    url: '/index/hotKeyword',
-    data: {
-      pageNum: pageNum,
-      pageRow: pageRow } });
-
-
-}
-function getKeyWordGoods(queryName) {var pageNum = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;var pageRow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;var orderName = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'hot';var orderPalin = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'ASC';
-  return (0, _request.default)({
-    url: '/commodity/search',
-    data: {
-      queryName: queryName,
-      pageNum: pageNum,
-      pageRow: pageRow,
-      orderName: orderName,
-      orderPalin: orderPalin } });
-
-
-
-}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__047D611" };exports.default = _default;
 
 /***/ })
 
