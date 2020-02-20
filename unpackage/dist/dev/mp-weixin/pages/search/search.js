@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search.vue?vue&type=script&lang=js& */ 55);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _search_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _search_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search.vue?vue&type=style&index=0&lang=css& */ 58);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 14);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 16);
 
 var renderjs
 
@@ -181,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _search = __webpack_require__(/*! ../../util/search.js */ 57);var mSearch = function mSearch() {return __webpack_require__.e(/*! import() | compoments/mehaotian-search-revision/mehaotian-search-revision */ "compoments/mehaotian-search-revision/mehaotian-search-revision").then(__webpack_require__.bind(null, /*! @/compoments/mehaotian-search-revision/mehaotian-search-revision.vue */ 60));};var goods = function goods() {return Promise.all(/*! import() | compoments/goods/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/goods/goods")]).then(__webpack_require__.bind(null, /*! ../../compoments/goods/goods.vue */ 67));};var _default =
+var _search = __webpack_require__(/*! ../../util/search.js */ 57);var mSearch = function mSearch() {return __webpack_require__.e(/*! import() | compoments/mehaotian-search-revision/mehaotian-search-revision */ "compoments/mehaotian-search-revision/mehaotian-search-revision").then(__webpack_require__.bind(null, /*! @/compoments/mehaotian-search-revision/mehaotian-search-revision.vue */ 92));};var goods = function goods() {return Promise.all(/*! import() | compoments/goods/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/goods/goods")]).then(__webpack_require__.bind(null, /*! ../../compoments/goods/goods.vue */ 99));};var _default =
 {
   data: function data() {
     return {

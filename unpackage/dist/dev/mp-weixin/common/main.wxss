@@ -13,6 +13,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*每个页面公共css */
 /* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 /*通用 */
@@ -1522,4 +1541,7 @@ radio-group label, checkbox-group label{
 .icon-weibiaoti-:before {
 	  content: "\E601";
 }
+/* page{
+	height: 100%;
+} */
 

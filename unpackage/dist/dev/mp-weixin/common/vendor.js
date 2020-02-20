@@ -737,7 +737,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1534,7 +1534,140 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 14:
+/***/ 104:
+/*!**************************************!*\
+  !*** D:/三阶段/hm_show/util/details.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getDetailsData = getDetailsData;exports.getCommodityDetailsData = getCommodityDetailsData;exports.joinCar = joinCar;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+function getDetailsData(bargainId) {
+  return (0, _request.default)({
+    url: '/bargain/loadBargainInfo',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      bargainId: bargainId } });
+
+
+}
+function getCommodityDetailsData(commodityInstId) {
+  return (0, _request.default)({
+    url: '/commodity/commodityInfo',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      commodityInstId: commodityInstId } });
+
+
+}
+function joinCar(commodityInstId, type) {
+  return (0, _request.default)({
+    url: '/shopCart/add',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
+
+    data: {
+      commodityInstId: commodityInstId,
+      type: type } });
+
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 12:
+/*!***********************************!*\
+  !*** D:/三阶段/hm_show/util/user.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.login = login;exports.send = send;exports.register = register;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+function getWxDecode(encryptedData, iv, code) {
+  return (0, _request.default)({
+    url: '/wxLogin/decodeUserInfo',
+    method: 'get',
+    data: {
+      encryptedData: encryptedData,
+      iv: iv,
+      code: code } });
+
+
+};
+function login(unionId) {var loginType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'wxLogin';
+  return (0, _request.default)({
+    url: '/wxLogin/login',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      unionId: unionId,
+      loginType: loginType } });
+
+
+}
+function send(telephone) {
+  return (0, _request.default)({
+    url: '/aliMsg/send',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      telephone: telephone } });
+
+
+}
+function register(telephone, unionId) {
+  return (0, _request.default)({
+    url: '/wxLogin/register',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      telephone: telephone,
+      unionId: unionId } });
+
+
+}
+
+/***/ }),
+
+/***/ 13:
+/*!**************************************!*\
+  !*** D:/三阶段/hm_show/util/request.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var BESTURL = 'http://121.36.172.234:8085';
+function _default(config) {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: BESTURL + config.url,
+      method: config.method || 'post',
+      data: config.data || {},
+      header: config.header || {},
+      success: resolve,
+      fail: reject });
+
+  });
+}
+
+/***/ }),
+
+/***/ 16:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
   \**********************************************************************************************************/
@@ -1652,30 +1785,6 @@ function normalizeComponent (
   }
 }
 
-
-/***/ }),
-
-/***/ 15:
-/*!**************************************!*\
-  !*** D:/三阶段/hm_show/util/request.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var BESTURL = 'http://121.36.172.234:8085';
-function _default(config) {
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      url: BESTURL + config.url,
-      method: config.method || 'post',
-      data: config.data || {},
-      header: config.header || {},
-      success: resolve,
-      fail: reject });
-
-  });
-}
 
 /***/ }),
 
@@ -7211,7 +7320,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7232,14 +7341,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7315,7 +7424,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7710,7 +7819,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 22:
+/***/ 23:
 /*!************************************!*\
   !*** D:/三阶段/hm_show/util/index.js ***!
   \************************************/
@@ -7718,7 +7827,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexList = getIndexList;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexList = getIndexList;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function getIndexList() {
   return (0, _request.default)({
@@ -7759,65 +7868,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 39:
-/*!***********************************!*\
-  !*** D:/三阶段/hm_show/util/user.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getWxDecode = getWxDecode;exports.getWxLogin = getWxLogin;exports.send = send;exports.register = register;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-function getWxDecode(encryptedData, iv, code) {
-  return (0, _request.default)({
-    url: '/wxLogin/decodeUserInfo',
-    method: 'get',
-    data: {
-      encryptedData: encryptedData,
-      iv: iv,
-      code: code } });
-
-
-};
-function getWxLogin(unionId) {var loginType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'wxLogin';
-  return (0, _request.default)({
-    url: '/wxLogin/login',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded' },
-
-    data: {
-      unionId: unionId,
-      loginType: loginType } });
-
-
-}
-function send(telephone) {
-  return (0, _request.default)({
-    url: '/aliMsg/send',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded' },
-
-    data: {
-      telephone: telephone } });
-
-
-}
-function register(telephone, unionId) {
-  return (0, _request.default)({
-    url: '/wxLogin/register',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded' },
-
-    data: {
-      telephone: telephone,
-      unionId: unionId } });
-
-
-}
-
-/***/ }),
-
 /***/ 4:
 /*!*********************************!*\
   !*** D:/三阶段/hm_show/pages.json ***!
@@ -7838,7 +7888,7 @@ function register(telephone, unionId) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getCategoryData = getCategoryData;exports.getSecondCategoryData = getSecondCategoryData;exports.getCategoryBrandData = getCategoryBrandData;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getCategoryData = getCategoryData;exports.getSecondCategoryData = getSecondCategoryData;exports.getCategoryBrandData = getCategoryBrandData;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 function getCategoryData() {
   return (0, _request.default)({
     url: '/index/loadFirstCategory' });
@@ -8771,7 +8821,7 @@ main();
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getHotKey = getHotKey;exports.getKeyWordGoods = getKeyWordGoods;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getHotKey = getHotKey;exports.getKeyWordGoods = getKeyWordGoods;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 function getHotKey(pageNum, pageRow) {
   return (0, _request.default)({
     url: '/index/hotKeyword',
@@ -8816,57 +8866,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "usingComponents": { "m-search": "/compoments/mehaotian-search-revision/mehaotian-search-revision", "goods": "/compoments/goods/goods" }, "usingAutoImportComponents": {} }, "pages/deliveryAddress/deliveryAddress": { "navigationBarTitleText": "我的收货地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/allOrders/allOrders": { "navigationBarTitleText": "我的全部订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/applicationForDrawback/applicationForDrawback": { "navigationBarTitleText": "我的退款申请", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/aboutUs/aboutUs": { "navigationBarTitleText": "关于我们", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/login": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
-
-/***/ }),
-
-/***/ 72:
-/*!**************************************!*\
-  !*** D:/三阶段/hm_show/util/details.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getDetailsData = getDetailsData;exports.getCommodityDetailsData = getCommodityDetailsData;exports.joinCar = joinCar;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-function getDetailsData(bargainId) {
-  return (0, _request.default)({
-    url: '/bargain/loadBargainInfo',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
-
-    data: {
-      bargainId: bargainId } });
-
-
-}
-function getCommodityDetailsData(commodityInstId) {
-  return (0, _request.default)({
-    url: '/commodity/commodityInfo',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
-
-    data: {
-      commodityInstId: commodityInstId } });
-
-
-}
-function joinCar(commodityInstId, type) {
-  return (0, _request.default)({
-    url: '/shopCart/add',
-    header: {
-      'content-type': 'application/x-www-form-urlencoded',
-      'Cookie': 'JSESSIONID=' + uni.getStorageSync('sessionId') },
-
-    data: {
-      commodityInstId: commodityInstId,
-      type: type } });
-
-
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台" }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/search/search": { "navigationBarTitleText": "搜索" }, "pages/member/login": {}, "pages/deliveryAddress/deliveryAddress": { "navigationBarTitleText": "我的收货地址" }, "pages/allOrders/allOrders": { "navigationBarTitleText": "我的全部订单" }, "pages/applicationForDrawback/applicationForDrawback": { "navigationBarTitleText": "我的退款申请" }, "pages/aboutUs/aboutUs": { "navigationBarTitleText": "关于我们" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
