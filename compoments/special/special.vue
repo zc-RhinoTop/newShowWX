@@ -107,7 +107,7 @@
 			line-height: 1.5;
 			.time{
 				.get-time{
-					color: $retail-color;
+					color: #FB8629;
 					
 				}
 			}

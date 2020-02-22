@@ -113,6 +113,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.address, function(item, index) {
+    var g0 = item.distance.toFixed(2)
+    return {
+      $orig: _vm.__get_orig(item),
+      g0: g0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -145,6 +161,21 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -309,7 +340,22 @@ var _index = __webpack_require__(/*! ../../util/index.js */ 23); //
 //
 //
 //
-var _default = { data: function data() {return { advertList: [], category: [], goods: [], stores: '' };}, onLoad: function onLoad(options) {var _this = this;(0, _index.getIndexList)().then(function (res) {if (res.data.code == 100) {console.log(res);_this.advertList = res.data.info.advertList;_this.category = res.data.info.categoryList;_this.goods = res.data.info.bargainCommodityList;} else {return uni.showToast({ title: '获取数据失败' });}});}, methods: { toSerach: function toSerach() {uni.navigateTo({ url: '/pages/search/search' });}, goCategory: function goCategory(index, id) {uni.switchTab({ url: '/pages/category/category' });uni.$emit('onceKinds', { index: index, id: id });} }, computed: { newDemo: function newDemo() {if (this.category.length > 10) {var arr = [];for (var i = 0; i < this.category.length; i += 10) {arr.push(this.category.slice(i, i + 10));}return arr;} else {return this.category;}} } };exports.default = _default;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 92));};var _default = { components: { uniPopup: uniPopup }, data: function data() {return { advertList: [], category: [], address: [], goods: [], stores: '' };}, onLoad: function onLoad(options) {var _this = this;(0, _index.getIndexList)().then(function (res) {if (res.data.code == 100) {console.log(res);_this.advertList = res.data.info.advertList;_this.category = res.data.info.categoryList;_this.goods = res.data.info.bargainCommodityList;} else {return uni.showToast({ title: '获取数据失败' });}});uni.authorize({ scope: 'scope.userLocation', success: function success() {uni.getLocation({ success: function success(res) {(0, _index.getStores)('24.6112244800', '118.0471944800').then(function (res) {console.log(res);_this.address = res.data.map(function (item) {item.memberByString = JSON.parse(item.memberByString);return item;});_this.$refs.popup.open();});} });} });}, methods: { moreSpecial: function moreSpecial() {uni.navigateTo({ url: '/pages/moreSpecial/moreSpecial' });}, toSerach: function toSerach() {uni.navigateTo({ url: '/pages/search/search' });}, goCategory: function goCategory(index, id) {uni.switchTab({ url: '/pages/category/category' });uni.$emit('onceKinds', { index: index, id: id });}, radioChange: function radioChange(e) {this.stores = e.detail.value;this.$refs.popup.close();} }, computed: { newDemo: function newDemo() {if (this.category.length > 10) {var arr = [];for (var i = 0; i < this.category.length; i += 10) {arr.push(this.category.slice(i, i + 10));}return arr;} else {return this.category;}} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

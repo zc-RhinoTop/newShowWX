@@ -2,7 +2,7 @@
 	<view class="index">
 		<view class="index-top">
 			<view class="map">
-				<text class="iconfont icon-icon-test1"></text><text>当前自取点：厦门集美总店</text>
+				<text class="iconfont icon-icon-test1"></text><text>当前自取点：{{stores}}</text>
 			</view>
 			<view class="inde-search" @tap="toSerach">
 				<icon class="icon-search" type="search" size="14" /><text>统一品牌满9减2</text>
@@ -74,21 +74,44 @@
 				</button>
 				<button type="warn" size="mini">加入购物车</button>
 			</view>
-			<view class="perchBottom"></view>
+			<view class="perchBottom" @tap="moreSpecial">更多特价商品</view>
 			<view class="perch2"></view>
 		</scroll-view>
+		<uni-popup type="top" ref="popup">
+				<view class="uni-list">
+				    <radio-group @change="radioChange">
+				         <label class="uni-list-cell uni-list-cell-pd"
+								v-for="(item, index) in address" :key="item.index">
+				            <view>
+				                 <radio :value="item.memberByString.storeName" :checked="index === current" >
+									  <view>{{item.memberByString.storeName}}</view>
+								 </radio>
+				            </view>
+							<view>距您{{item.distance.toFixed(2)}}公里</view>
+				        </label>
+				    </radio-group>
+				 </view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 	import {
-		getIndexList
+		getIndexList,
+		getStores
 	} from "../../util/index.js"
+	
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
 	export default {
+		components:{
+			
+			uniPopup
+		},
 		data() {
 			return {
 				advertList: [],
 				category: [],
+				address:[],
 				goods: [],
 				stores: ''
 			}
@@ -106,8 +129,30 @@
 					})
 				}
 			})
+			uni.authorize({
+				 scope: 'scope.userLocation',
+				 success: ()=>{
+					 uni.getLocation({
+					 	success: res=>{
+					 		getStores('24.6112244800','118.0471944800').then(res=>{
+					 			console.log(res)
+					 			this.address = res.data.map(item =>{
+										item.memberByString = JSON.parse(item.memberByString)
+										return item
+									})
+								   this.$refs.popup.open()
+					 		})
+					 	}
+					 })
+				 }
+			})
 		},
 		methods: {
+			moreSpecial(){
+				uni.navigateTo({
+					url: '/pages/moreSpecial/moreSpecial'
+				});
+			},
 			toSerach() {
 				uni.navigateTo({
 					url: '/pages/search/search'
@@ -121,6 +166,10 @@
 					index: index,
 					id: id
 				})
+			},
+			radioChange(e){
+				this.stores = e.detail.value
+				this.$refs.popup.close()
 			}
 		},
 		computed: {
@@ -332,6 +381,7 @@
 				border-top: 2upx solid rgb(242, 242, 242);
 				width: 100%;
 				height: 66upx;
+				text-align: center;
 			}
 
 			.perch2 {
@@ -339,6 +389,9 @@
 				height: 15upx;
 				background-color: $index-slide-bgColor;
 			}
+		}
+		.uni-list-cell{
+			background-color:rgba($color: #FB8629, $alpha: 0.8);
 		}
 	}
 </style>

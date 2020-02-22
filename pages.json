@@ -66,6 +66,12 @@
 		    "style" : {
 				"navigationBarTitleText": "关于我们"
 			}
+		},
+		{
+		    "path" : "pages/moreSpecial/moreSpecial",
+		    "style" : {
+				"navigationBarTitleText": "特价活动"
+			}
 		}
 		
     ],

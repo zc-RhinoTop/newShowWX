@@ -1534,7 +1534,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 104:
+/***/ 111:
 /*!**************************************!*\
   !*** D:/三阶段/hm_show/util/details.js ***!
   \**************************************/
@@ -7827,11 +7827,34 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexList = getIndexList;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexList = getIndexList;exports.getStores = getStores;exports.getSpecialData = getSpecialData;var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function getIndexList() {
   return (0, _request.default)({
     url: '/index/loadIndexData' });
+
+}
+function getStores(latitude, longitude) {
+  return (0, _request.default)({
+    url: '/getPoint/listPoint',
+    method: 'get',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded' },
+
+    data: {
+      latitude: latitude,
+      longitude: longitude } });
+
+
+}
+function getSpecialData() {
+  return (0, _request.default)({
+    url: '/index/bargainPriceCommodityList',
+    data: {
+      pageNum: 1,
+      pageRow: 100,
+      queryName: '' } });
+
 
 }
 
@@ -8866,7 +8889,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台" }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white" }, "pages/search/search": { "navigationBarTitleText": "搜索" }, "pages/member/login": {}, "pages/deliveryAddress/deliveryAddress": { "navigationBarTitleText": "我的收货地址" }, "pages/allOrders/allOrders": { "navigationBarTitleText": "我的全部订单" }, "pages/applicationForDrawback/applicationForDrawback": { "navigationBarTitleText": "我的退款申请" }, "pages/aboutUs/aboutUs": { "navigationBarTitleText": "关于我们" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "新零售平台", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup" }, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "我的购物车", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/member/member": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/category/category": { "navigationBarTitleText": "商品分类", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索", "usingComponents": { "m-search": "/compoments/mehaotian-search-revision/mehaotian-search-revision", "goods": "/compoments/goods/goods" }, "usingAutoImportComponents": {} }, "pages/member/login": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deliveryAddress/deliveryAddress": { "navigationBarTitleText": "我的收货地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/allOrders/allOrders": { "navigationBarTitleText": "我的全部订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/applicationForDrawback/applicationForDrawback": { "navigationBarTitleText": "我的退款申请", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/aboutUs/aboutUs": { "navigationBarTitleText": "关于我们", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/moreSpecial/moreSpecial": { "navigationBarTitleText": "特价活动" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "新零售平台", "navigationBarBackgroundColor": "#FB8629", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

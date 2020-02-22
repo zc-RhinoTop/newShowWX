@@ -1541,7 +1541,7 @@ radio-group label, checkbox-group label{
 .icon-weibiaoti-:before {
 	  content: "\E601";
 }
-/* page{
+page{
 	height: 100%;
-} */
+}
 
