@@ -193,9 +193,9 @@ var _default = { data: function data() {return { leaveOneList: [], leaveTwoList:
       this.getTwoData(id);
     },
     choosePage: function choosePage(id) {
-      // uni.navigateTo({
-      // 	url:'/pages/categoryBrand/categoryBrand?categoryId='+id
-      // })
+      uni.navigateTo({
+        url: '/pages/categoryBrand/categoryBrand?categoryId=' + id });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

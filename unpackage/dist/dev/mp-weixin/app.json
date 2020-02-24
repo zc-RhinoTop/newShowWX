@@ -10,7 +10,9 @@
     "pages/allOrders/allOrders",
     "pages/applicationForDrawback/applicationForDrawback",
     "pages/aboutUs/aboutUs",
-    "pages/moreSpecial/moreSpecial"
+    "pages/moreSpecial/moreSpecial",
+    "pages/categoryBrand/categoryBrand",
+    "pages/details/details"
   ],
   "subPackages": [],
   "window": {

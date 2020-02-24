@@ -181,7 +181,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _search = __webpack_require__(/*! ../../util/search.js */ 57);var mSearch = function mSearch() {return __webpack_require__.e(/*! import() | compoments/mehaotian-search-revision/mehaotian-search-revision */ "compoments/mehaotian-search-revision/mehaotian-search-revision").then(__webpack_require__.bind(null, /*! @/compoments/mehaotian-search-revision/mehaotian-search-revision.vue */ 99));};var goods = function goods() {return Promise.all(/*! import() | compoments/goods/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/goods/goods")]).then(__webpack_require__.bind(null, /*! ../../compoments/goods/goods.vue */ 106));};var _default =
+var _search = __webpack_require__(/*! ../../util/search.js */ 57);var mSearch = function mSearch() {return __webpack_require__.e(/*! import() | compoments/mehaotian-search-revision/mehaotian-search-revision */ "compoments/mehaotian-search-revision/mehaotian-search-revision").then(__webpack_require__.bind(null, /*! @/compoments/mehaotian-search-revision/mehaotian-search-revision.vue */ 107));};var goods = function goods() {return Promise.all(/*! import() | compoments/goods/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("compoments/goods/goods")]).then(__webpack_require__.bind(null, /*! ../../compoments/goods/goods.vue */ 114));};var _default =
 {
   data: function data() {
     return {

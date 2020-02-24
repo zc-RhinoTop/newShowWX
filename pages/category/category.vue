@@ -58,9 +58,9 @@
 				this.getTwoData(id)
 			},
 			choosePage(id){
-				// uni.navigateTo({
-				// 	url:'/pages/categoryBrand/categoryBrand?categoryId='+id
-				// })
+				uni.navigateTo({
+					url:'/pages/categoryBrand/categoryBrand?categoryId='+id
+				})
 			}
 		}
 	}

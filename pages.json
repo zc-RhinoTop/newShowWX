@@ -72,6 +72,14 @@
 		    "style" : {
 				"navigationBarTitleText": "特价活动"
 			}
+		},
+		{
+		    "path" : "pages/categoryBrand/categoryBrand",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/details/details",
+		    "style" : {}
 		}
 		
     ],
