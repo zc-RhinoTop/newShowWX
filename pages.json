@@ -50,6 +50,18 @@
 			}
 		},
 		{
+		    "path" : "pages/addAddress/addAddress",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/newAddress/newAddress",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/newAddress/selfAddress",
+		    "style" : {}
+		},
+		{
 		    "path" : "pages/allOrders/allOrders",
 		    "style" : {
 				"navigationBarTitleText": "我的全部订单"
